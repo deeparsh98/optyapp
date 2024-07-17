@@ -35,20 +35,20 @@ function AppRoutes() {
 function LoggedIn() {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    // async function fetchData() {
-    //   let data = await fetchUserDetails();
-    //   window.user = data;
-    //   setUser(data);
-    // }
-    // fetchData();
+    async function fetchData() {
+      let data = await fetchUserDetails();
+      window.user = data;
+      setUser(data);
+    }
+    fetchData();
 
-    window.user = {
-      fullname: "Arshdeep",
-      email: "arshdeep@optmyzr.com",
-      parentId: "1",
-      userId: "1",
-    };
-    setUser(window.user);
+    // window.user = {
+    //   fullname: "Arshdeep",
+    //   email: "arshdeep@optmyzr.com",
+    //   parentId: "1",
+    //   userId: "1",
+    // };
+    // setUser(window.user);
     return () => {
       delete window.user;
       setUser(null);
