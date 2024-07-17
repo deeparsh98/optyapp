@@ -22,7 +22,7 @@ export default function Login() {
       <Box position={"absolute"} top={0}>
         <HeroImage />
       </Box>
-      <Box position={"absolute"} top={"56%"}>
+      <Box position={"absolute"} top={"56%"} marginLeft={"18px"}>
         <OptyImgBig />
         <Button
           style={{
