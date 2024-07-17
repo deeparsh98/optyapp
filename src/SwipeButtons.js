@@ -1,26 +1,32 @@
 import React from "react";
 import "./SwipeButtons.css";
-import {Replay, Close, StarRate, Favorite, FlashOn} from "@mui/icons-material";
+import {
+  Replay,
+  Close,
+  StarRate,
+  Favorite,
+  FlashOn,
+} from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-const SwipeButtons = () => {
+const SwipeButtons = ({ onLike, onCancel }) => {
   return (
     <div className="swipeButtons">
-      <IconButton className="swipeButtons__repeat">
+      {/* <IconButton className="swipeButtons__repeat">
         <Replay fontSize="large" />
-      </IconButton>
-      <IconButton className="swipeButtons__left">
+      </IconButton> */}
+      <IconButton className="swipeButtons__left" onClick={onCancel}>
         <Close fontSize="large" />
       </IconButton>
-      <IconButton className="swipeButtons__star">
+      {/* <IconButton className="swipeButtons__star">
         <StarRate fontSize="large" />
-      </IconButton>
-      <IconButton className="swipeButtons__right">
+      </IconButton> */}
+      <IconButton className="swipeButtons__right" onClick={onLike}>
         <Favorite fontSize="large" />
       </IconButton>
-      <IconButton className="swipeButtons__lightning">
+      {/* <IconButton className="swipeButtons__lightning">
         <FlashOn fontSize="large" />
-      </IconButton>
+      </IconButton> */}
     </div>
   );
 };

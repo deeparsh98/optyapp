@@ -1,9 +1,15 @@
 import React from "react";
 import "./Header.css";
-import { IconButton, } from "@mui/material";
-import { ArrowBackIos, Person, Forum } from '@mui/icons-material';
+import { IconButton, Tooltip } from "@mui/material";
+import {
+  ArrowBackIos,
+  Person,
+  Forum,
+  CompareArrows,
+} from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as OptyIcon} from "./assets/img/optmyzr-icon.svg"
+import { ReactComponent as OptyIcon } from "./assets/img/optmyzr-icon.svg";
+import AccountMenu from "./components/UserMenu";
 
 function Header({ backButton }) {
   const navigate = useNavigate();
@@ -14,16 +20,16 @@ function Header({ backButton }) {
           <ArrowBackIos className="header__icon" fontSize="large" />
         </IconButton>
       ) : (
-        <IconButton>
-          <Person className="header__icon" fontSize="large" />
-        </IconButton>
+        <AccountMenu />
       )}
-      <Link to="/">
-        <OptyIcon/>
+      <Link to="/app">
+        <OptyIcon />
       </Link>
-      <Link to="/chat">
+      <Link to="/app/chat">
         <IconButton>
-          <Forum className="header__icon" fontSize="large" />
+          <Tooltip title="Switch Account" placement="top">
+            <CompareArrows className="header__icon" fontSize="large" />
+          </Tooltip>
         </IconButton>
       </Link>
     </div>

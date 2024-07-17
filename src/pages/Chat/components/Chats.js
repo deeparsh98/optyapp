@@ -1,26 +1,43 @@
 import React from "react";
 import "./Chats.css";
-import Chat from "./Chat"
+import Chat from "./Chat";
+import { mockData } from "./mockData";
+import { CircularProgress } from "@mui/material";
+import { getRowMapped } from "../../../utils/helpers";
+import { getPlatformIcon } from "../../../utils/platformIcons";
+import { fetchAccounts } from "../../../utils/optmyzrapi";
 
 const Chats = () => {
-  return <div className="chats">
-      <Chat
-      name="Labrador"
-      message="Wuff" 
-      timestamp="6 mins ago" 
-      profilePic="https://gooddoggies.online/wp-content/uploads/2020/06/5-Tips-To-Training-A-Labrador-Puppy-1.jpg"
-      />
-      <Chat
-      name="Shiba Inu"
-      message="Bork" 
-      timestamp="1 hr ago" 
-      profilePic="https://thehappypuppysite.com/wp-content/uploads/2019/06/Mini-Shiba-Inu-HP-long.jpg"/>
-      <Chat
-      name="Corgi"
-      message="Awooo" 
-      timestamp="4 hrs ago" 
-      profilePic="https://i.pinimg.com/originals/cb/d4/1f/cbd41fb83c06a915a79ed0ab9ca63789.jpg"/>
-  </div>;
+  const [accounts, setAccounts] = React.useState({});
+  React.useEffect(() => {
+    async function fetchData() {
+      let data = await fetchAccounts();
+      if (data) setAccounts({ ...data, fetched: true });
+    }
+    fetchData();
+
+    // setAccounts({ ...mockData, fetched: true });
+  }, []);
+
+  return (
+    <div className="chats" style={{ maxHeight: "82vh", overflow: "scroll" }}>
+      {!accounts.fetched && <CircularProgress />}
+      {accounts.fetched && accounts.rows.length === 0 && <h1>No Accounts</h1>}
+      {accounts.fetched &&
+        accounts.rows.map((row, idx) => {
+          let account = getRowMapped(row, accounts.columns);
+          return (
+            <Chat
+              account={account.accountId}
+              name={account.accountName}
+              message={account.accountId}
+              timestamp=""
+              type={account.accountType}
+            />
+          );
+        })}
+    </div>
+  );
 };
 
 export default Chats;

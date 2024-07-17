@@ -1,10 +1,12 @@
-import React from "react"
-import Header from "../../Header"
-import ChatScreen from "./components/ChatScreen"
+import React from "react";
+import Header from "../../Header";
+import ChatScreen from "./components/ChatScreen";
 
-
-export default function ChatScreenPage(){
-    return <div>
-    <Header backButton="/chat" />
-            <ChatScreen/></div>
+export default function ChatScreenPage() {
+  return (
+    <div>
+      <Header backButton="/app/chat" />
+      <ChatScreen />
+    </div>
+  );
 }
